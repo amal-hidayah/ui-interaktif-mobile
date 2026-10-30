@@ -104,7 +104,8 @@ final List<EventItem> sampleEvents = [
   EventItem(
     id: 'sem-ai-02',
     title: 'LLM Ops & RAG: dari Demo ke Produksi',
-    tagline: 'Aplikasi AI yang rapi: evaluasi, biaya, dan data yang terkendali.',
+    tagline:
+        'Aplikasi AI yang rapi: evaluasi, biaya, dan data yang terkendali.',
     category: EventCategory.ai,
     speaker: 'Yoga Pratama',
     speakerRole: 'ML Platform Lead, DataSagara',

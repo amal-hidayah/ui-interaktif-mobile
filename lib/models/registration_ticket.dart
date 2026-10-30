@@ -10,7 +10,12 @@ enum ParticipantType {
   umum('Umum', 'Pengunjung umum', 25000, Icons.groups_rounded),
   profesional('Profesional', 'Praktisi & dosen', 50000, Icons.work_rounded);
 
-  const ParticipantType(this.label, this.description, this.surcharge, this.icon);
+  const ParticipantType(
+    this.label,
+    this.description,
+    this.surcharge,
+    this.icon,
+  );
 
   final String label;
   final String description;
@@ -114,7 +119,11 @@ class RegistrationTicket {
 
   static String _generateCode() {
     final random = Random();
-    final suffix = random.nextInt(0xFFFF).toRadixString(16).toUpperCase().padLeft(4, '0');
+    final suffix = random
+        .nextInt(0xFFFF)
+        .toRadixString(16)
+        .toUpperCase()
+        .padLeft(4, '0');
     return 'NEH-${DateTime.now().year}-$suffix';
   }
 }

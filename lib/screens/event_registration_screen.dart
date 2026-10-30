@@ -250,6 +250,7 @@ class _EventRegistrationScreenState extends State<EventRegistrationScreen> {
                   child: Column(
                     children: [
                       TextFormField(
+                        key: const Key('input_nama'),
                         controller: _nameController,
                         enabled: !_isSubmitting,
                         textInputAction: TextInputAction.next,
@@ -263,6 +264,7 @@ class _EventRegistrationScreenState extends State<EventRegistrationScreen> {
                       ),
                       const SizedBox(height: 14),
                       TextFormField(
+                        key: const Key('input_nim'),
                         controller: _nimController,
                         enabled: !_isSubmitting,
                         textInputAction: TextInputAction.next,
@@ -280,6 +282,7 @@ class _EventRegistrationScreenState extends State<EventRegistrationScreen> {
                       ),
                       const SizedBox(height: 14),
                       TextFormField(
+                        key: const Key('input_email'),
                         controller: _emailController,
                         enabled: !_isSubmitting,
                         textInputAction: TextInputAction.next,
@@ -294,6 +297,7 @@ class _EventRegistrationScreenState extends State<EventRegistrationScreen> {
                       ),
                       const SizedBox(height: 14),
                       TextFormField(
+                        key: const Key('input_whatsapp'),
                         controller: _whatsappController,
                         enabled: !_isSubmitting,
                         textInputAction: TextInputAction.done,
@@ -355,6 +359,7 @@ class _EventRegistrationScreenState extends State<EventRegistrationScreen> {
                       ),
                       const SizedBox(height: 18),
                       FormField<DateTime>(
+                        key: const Key('field_tanggal'),
                         initialValue: _attendanceDate,
                         validator: (value) => value == null
                             ? 'Tanggal kehadiran wajib dipilih'
@@ -562,6 +567,7 @@ class _EventRegistrationScreenState extends State<EventRegistrationScreen> {
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   CheckboxListTile(
+                                    key: const Key('checkbox_terms'),
                                     value: _agreed,
                                     onChanged: _isSubmitting
                                         ? null
@@ -637,6 +643,7 @@ class _EventRegistrationScreenState extends State<EventRegistrationScreen> {
                 SizedBox(
                   width: double.infinity,
                   child: FilledButton(
+                    key: const Key('button_submit'),
                     onPressed: _isSubmitting ? null : _submit,
                     child: AnimatedSwitcher(
                       duration: const Duration(milliseconds: 180),
