@@ -135,10 +135,7 @@ void main() {
 
     await tester.tap(find.byTooltip('Tutup'));
     await tester.pumpAndSettle();
-    expect(
-      find.text('Cubit & geser untuk memperbesar poster'),
-      findsNothing,
-    );
+    expect(find.text('Cubit & geser untuk memperbesar poster'), findsNothing);
   });
 }
 
