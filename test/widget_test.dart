@@ -1,30 +1,96 @@
-// This is a basic Flutter widget test.
-//
-// To perform an interaction with a widget in your test, use the WidgetTester
-// utility in the flutter_test package. For example, you can send tap and scroll
-// gestures. You can also use WidgetTester to find child widgets in the widget
-// tree, read text, and verify that the values of widget properties are correct.
-
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-
 import 'package:tugas_sesi_5/main.dart';
+import 'package:tugas_sesi_5/screens/event_registration_screen.dart';
+import 'package:tugas_sesi_5/screens/home_events_screen.dart';
 
 void main() {
-  testWidgets('Counter increments smoke test', (WidgetTester tester) async {
-    // Build our app and trigger a frame.
-    await tester.pumpWidget(const MyApp());
+  testWidgets('tiga tab utama bisa dibuka', (tester) async {
+    await tester.pumpWidget(const NusaEventApp());
+    await tester.pumpAndSettle();
 
-    // Verify that our counter starts at 0.
-    expect(find.text('0'), findsOneWidget);
-    expect(find.text('1'), findsNothing);
+    expect(find.text('Seminar & Workshop'), findsOneWidget);
+    expect(
+      find.text('AI Summit: Ngobrol Produktif dengan Generative AI'),
+      findsOneWidget,
+    );
 
-    // Tap the '+' icon and trigger a frame.
-    await tester.tap(find.byIcon(Icons.add));
-    await tester.pump();
+    await tester.tap(find.text('Galeri & Venue'));
+    await tester.pumpAndSettle();
+    expect(find.text('Galeri & Denah'), findsOneWidget);
+    expect(find.byType(GridView), findsOneWidget);
 
-    // Verify that our counter has incremented.
-    expect(find.text('0'), findsNothing);
-    expect(find.text('1'), findsOneWidget);
+    final galleryScrollable = find
+        .descendant(
+          of: find.byType(GalleryVenueScreen),
+          matching: find.byType(Scrollable),
+        )
+        .first;
+    await tester.scrollUntilVisible(
+      find.text('Denah venue'),
+      300,
+      scrollable: galleryScrollable,
+    );
+    expect(find.text('Denah venue'), findsOneWidget);
+
+    await tester.tap(find.text('Tiket'));
+    await tester.pumpAndSettle();
+    expect(find.text('Tiket Terdaftar'), findsOneWidget);
+    expect(find.text('NEH-2026-DEMO'), findsOneWidget);
+  });
+
+  testWidgets('filter kategori menyaring daftar seminar', (tester) async {
+    await tester.pumpWidget(const NusaEventApp());
+    await tester.pumpAndSettle();
+
+    await tester.tap(find.widgetWithText(ChoiceChip, 'IoT'));
+    await tester.pumpAndSettle();
+
+    expect(find.text('2 sesi tersedia • 8 total event'), findsOneWidget);
+    expect(find.text('IoT Smart Campus Bootcamp'), findsOneWidget);
+    expect(
+      find.text('AI Summit: Ngobrol Produktif dengan Generative AI'),
+      findsNothing,
+    );
+  });
+
+  testWidgets('formulir menolak data kosong', (tester) async {
+    await tester.pumpWidget(const NusaEventApp());
+    await tester.pumpAndSettle();
+
+    await tester.tap(
+      find.text('AI Summit: Ngobrol Produktif dengan Generative AI'),
+    );
+    await tester.pumpAndSettle();
+
+    await tester.tap(find.text('Daftar sekarang'));
+    await tester.pumpAndSettle();
+
+    expect(find.text('Pendaftaran'), findsOneWidget);
+
+    final submitButton = find.text('Kirim pendaftaran');
+    final formScrollable = find
+        .descendant(
+          of: find.byType(EventRegistrationScreen),
+          matching: find.byType(Scrollable),
+        )
+        .first;
+    await tester.scrollUntilVisible(
+      submitButton,
+      350,
+      scrollable: formScrollable,
+    );
+    await tester.pumpAndSettle();
+    await tester.tap(submitButton);
+    await tester.pumpAndSettle();
+
+    expect(
+      find.text('Persetujuan tata tertib wajib dicentang'),
+      findsOneWidget,
+    );
+    expect(
+      find.text('Lengkapi dulu data yang ditandai merah.'),
+      findsOneWidget,
+    );
   });
 }
