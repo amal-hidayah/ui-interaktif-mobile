@@ -53,6 +53,33 @@ Diambil langsung dari perangkat Android (1080 × 2340) memakai `flutter drive`:
 | 13 | Denah venue | `screenshots/13-denah-venue.png` |
 | 14 | Denah setelah zoom | `screenshots/14-denah-venue-zoom.png` |
 
+## Flutter Inspector
+
+Screenshot DevTools (tab **Flutter Inspector**) saat aplikasi berjalan di HP. Panel kiri
+menampilkan widget tree aplikasi, panel kanan menampilkan properti widget, Flex explorer,
+dan Render object. Screenshot terakhir diambil dari HP saat **Select Widget Mode** aktif:
+widget yang diketuk langsung terpilih di DevTools dan ukurannya tampil sebagai overlay.
+
+<p>
+  <img src="screenshots/15-inspector-widget-tree-properties.png" width="420" alt="Widget tree dan widget properties" />
+  <img src="screenshots/16-inspector-flex-explorer.png" width="420" alt="Flex explorer" />
+  <img src="screenshots/17-inspector-render-object.png" width="420" alt="Render object" />
+  <img src="screenshots/18-inspector-select-mode-devtools.png" width="420" alt="Select widget mode di DevTools" />
+  <img src="screenshots/19-inspector-select-mode-hp.png" width="180" alt="Overlay inspector di HP" />
+</p>
+
+| # | Fitur | File |
+|---|---|---|
+| 15 | Widget tree + widget properties | `screenshots/15-inspector-widget-tree-properties.png` |
+| 16 | Flex explorer (layout) | `screenshots/16-inspector-flex-explorer.png` |
+| 17 | Render object | `screenshots/17-inspector-render-object.png` |
+| 18 | Select widget mode — DevTools | `screenshots/18-inspector-select-mode-devtools.png` |
+| 19 | Select widget mode — overlay di HP | `screenshots/19-inspector-select-mode-hp.png` |
+
+Cara membuka: jalankan `flutter run`, buka URL DevTools yang tercetak di terminal, lalu
+pilih tab **Flutter Inspector**. Aktifkan **Select Widget Mode** dan ketuk widget di HP
+untuk memilihnya dari perangkat.
+
 ## Verifikasi
 
 ```bash
